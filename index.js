@@ -38,4 +38,31 @@ app.post("/api/weights", async (req, res) => {
   res.json(entry);
 });
 
+// Update weight entry by ID
+app.patch("/api/weights/:id", async (req, res) => {
+  const { id } = req.params;
+  const { weight, date } = req.body;
+  try {
+    const updated = await Weight.findByIdAndUpdate(
+      id,
+      { weight, date },
+      { new: true }
+    );
+    res.json(updated);
+  } catch (error) {
+    res.status(400).json({ error: "Update failed" });
+  }
+});
+
+// Delete weight entry by ID
+app.delete("/api/weights/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Weight.findByIdAndDelete(id);
+    res.json({ message: "Deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ error: "Deletion failed" });
+  }
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
