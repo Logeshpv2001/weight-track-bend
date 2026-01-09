@@ -7,7 +7,7 @@ const PORT = 5000;
 
 mongoose
   .connect(
-    "mongodb+srv://logeshkarnish:Logeshpv%402001@cluster0.jpknhkc.mongodb.net/"
+    "mongodb+srv://logeshkarnish:G0GWqnT5ZCqilTxh@cluster0.jpknhkc.mongodb.net/"
   )
   .then(() => {
     console.log("✅ MongoDB connected successfully");
