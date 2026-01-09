@@ -26,6 +26,21 @@ const Weight = mongoose.model("Weight", weightSchema);
 app.use(cors());
 app.use(express.json());
 
+// Health check
+app.get("/", (req, res) => {
+  res.send("🚀 Weight Tracker API is running!");
+});
+
+// Test API
+app.get("/api/test", (req, res) => {
+  res.json({
+    success: true,
+    message: "Server is working fine ✅",
+    time: new Date(),
+  });
+});
+
+
 app.get("/api/weights", async (req, res) => {
   const weights = await Weight.find().sort({ date: 1 });
   res.json(weights);
